@@ -37,12 +37,12 @@ module ActiveAdmin
 
         results = records.map do |record|
           {
-            id: record.id,
+            id: record.public_send(params.fetch(:key_attr, :id)),
             text: display_text(record)
           }.merge(hash_of_additional_payload(record) || {})
         end
 
-        { results: results, pagination: { more: more } }
+        {results:, pagination: {more:}}
       end
 
       private
